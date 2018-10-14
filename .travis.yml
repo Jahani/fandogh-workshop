@@ -4,8 +4,8 @@ branches:
   - develop
 language: python
 sudo: required
-services:
- - docker
+# services:
+# - docker
 python:
   - "3.5" 
 # command to install dependencies
@@ -13,8 +13,8 @@ install:
   - pip install fandogh-cli --upgrade
 # command to run tests
 script:
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+#  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - echo $TRAVIS_COMMIT  
   - COLLECT_ERROR=True fandogh login --username=$FANDOGH_USERNAME --password=$FANDOGH_PASSWORD
   - cd vote; fandogh image publish --version $TRAVIS_COMMIT; cd ..;
-  - cd vote; fandogh service apply -d -f manifest.yml -p VERSION=$TRAVIS_COMMIT || travis_terminate 1; cd ..;
+  - cd vote; fandogh service apply -d manifest.yml -p VERSION=$TRAVIS_COMMIT || travis_terminate 1; cd ..;
