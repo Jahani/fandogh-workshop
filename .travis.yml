@@ -17,4 +17,4 @@ script:
   - echo $TRAVIS_COMMIT  
   - COLLECT_ERROR=True fandogh login --username=$FANDOGH_USERNAME --password=$FANDOGH_PASSWORD
   - cd vote; fandogh image publish --version $TRAVIS_COMMIT; cd ..;
-  - cd vote; fandogh service apply -d manifest.yml -p VERSION=$TRAVIS_COMMIT || travis_terminate 1; cd ..;
+  - cd vote; fandogh service apply -d -f manifest.yml -p VERSION=$TRAVIS_COMMIT || travis_terminate 1; cd ..;
